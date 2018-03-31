@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="puppet puppet简介 1.puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。">
+<meta name="description" content="puppet puppet简介 puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。   puppet采用C/S星状的结构，所有的客户端和一个或几个服务器交互。每个客户端周期">
 <meta name="keywords" content="puppet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="puppet">
 <meta property="og:url" content="https://xiaoming97.github.io/xiaom_blog.github.io/2018/03/28/puppet/index.html">
 <meta property="og:site_name" content="Welcome to Xiaom&#39;s site">
-<meta property="og:description" content="puppet puppet简介 1.puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。">
+<meta property="og:description" content="puppet puppet简介 puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。   puppet采用C/S星状的结构，所有的客户端和一个或几个服务器交互。每个客户端周期">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-31T15:15:26.740Z">
+<meta property="og:updated_time" content="2018-03-31T16:00:17.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="puppet">
-<meta name="twitter:description" content="puppet puppet简介 1.puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。">
+<meta name="twitter:description" content="puppet puppet简介 puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。   puppet采用C/S星状的结构，所有的客户端和一个或几个服务器交互。每个客户端周期">
 
 
 
@@ -354,7 +354,35 @@
       
         <h1 id="puppet"><a href="#puppet" class="headerlink" title="puppet"></a>puppet</h1><hr>
 <h2 id="puppet简介"><a href="#puppet简介" class="headerlink" title="puppet简介"></a>puppet简介</h2><blockquote>
-<p>1.puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。</p>
+<p>puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。</p>
+</blockquote>
+<blockquote>
+<p>puppet采用C/S星状的结构，所有的客户端和一个或几个服务器交互。每个客户端周期的（默认半个小时）向服务器发送请求，获得其最新的配置信息，保证和该配置信息同步。每个puppet客户端每半小时(可以设置)连接一次服务器端, 下载最新的配置文件,并且严格按照配置文件来配置客户端. 配置完成以后,puppet客户端可以反馈给服务器端一个消息. 如果出错,也会给服务器端反馈一个消息.</p>
+</blockquote>
+<p>##安装puppet</p>
+<blockquote>
+<p>puppet的安装方式支持源码安装、yum安装、以及Ruby的gem安装。官网推荐使用yum来安装puppet,方便以后的升级，管理，维护。但是Centos的默认源中没有puppet包，因此先要安装epel包。epel是企业版linux附加软件包（Extra Package for Enterprise Linux)的缩写，是一个由特别兴趣小组创建、维护并管理的，针对红帽企业版Linux(RHEL)及其衍生发行版本（比如centos)的一个高质量附加软件包项目。</p>
+</blockquote>
+<blockquote>
+<p>安装环境装备：</p>
+<blockquote>
+<p>配置主机名（并且设置互相解析）<br>/etc/hosts</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>配置防火墙策略（实验时直接关闭防火墙）</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>关闭selinux</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>配置ntp服务器并且保证时间同步<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ntp.conf</span><br><span class="line"></span><br><span class="line">restrict default kod nomodify</span><br><span class="line">server 127.127.1.0</span><br><span class="line">fudge 127.127.1.0 stratum 10</span><br><span class="line"></span><br><span class="line">service ntpd restart</span><br><span class="line"></span><br><span class="line">chkconfig ntpd on</span><br></pre></td></tr></table></figure></p>
+</blockquote>
 </blockquote>
 
       
