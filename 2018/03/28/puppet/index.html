@@ -88,7 +88,7 @@
 <meta property="og:description" content="puppet puppet简介 puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。   puppet采用C/S星状的结构，所有的客户端和一个或几个服务器交互。每个客户端周期">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://xiaoming97.github.io/xiaom_blog.github.io/2018/03/28/puppet/puppet_version.png">
-<meta property="og:updated_time" content="2018-04-05T20:21:18.999Z">
+<meta property="og:updated_time" content="2018-04-05T21:12:49.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="puppet">
 <meta name="twitter:description" content="puppet puppet简介 puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。   puppet采用C/S星状的结构，所有的客户端和一个或几个服务器交互。每个客户端周期">
@@ -364,9 +364,9 @@
 <h2 id="安装puppet"><a href="#安装puppet" class="headerlink" title="安装puppet"></a>安装puppet</h2><blockquote>
 <p>puppet的安装方式支持源码安装、yum安装、以及Ruby的gem安装。官网推荐使用yum来安装puppet,方便以后的升级，管理，维护。但是Centos的默认源中没有puppet包，因此先要安装epel包。epel是企业版linux附加软件包（Extra Package for Enterprise Linux)的缩写，是一个由特别兴趣小组创建、维护并管理的，针对红帽企业版Linux(RHEL)及其衍生发行版本（比如centos)的一个高质量附加软件包项目。</p>
 </blockquote>
-<blockquote>
-<p>安装环境装备：</p>
-<p>1 配置主机名（并且设置互相解析）<br>/etc/hosts</p>
+<h3 id="安装环境装备："><a href="#安装环境装备：" class="headerlink" title="安装环境装备："></a>安装环境装备：</h3><blockquote>
+<p>1 配置主机名（并且设置互相解析）</p>
+<p>/etc/hosts</p>
 </blockquote>
 <blockquote>
 <p>2 配置防火墙策略（实验时直接关闭防火墙）</p>
@@ -381,6 +381,13 @@
 <p>5 安装Ruby<br>由于puppet是基于Ruby开发的，并且不同的Ruby版本所支持的puppet版本也有区别，所以可以先安装Rvm(Ruby版本管理软件）来管理Ruby版本再去安装指定的puppet版本。</p>
 <p><img src="puppet_version.png" alt="avatar"></p>
 </blockquote>
+<blockquote>
+<p>6 安装puppet</p>
+</blockquote>
+<blockquote>
+<p>在服务端安装puppet、facter  客户端安装puppet-server、facter</p>
+</blockquote>
+<p>##puppet的配置</p>
 
       
     </div>
@@ -555,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#puppet"><span class="nav-number">1.</span> <span class="nav-text">puppet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#puppet简介"><span class="nav-number">1.1.</span> <span class="nav-text">puppet简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装puppet"><span class="nav-number">1.2.</span> <span class="nav-text">安装puppet</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#puppet"><span class="nav-number">1.</span> <span class="nav-text">puppet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#puppet简介"><span class="nav-number">1.1.</span> <span class="nav-text">puppet简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装puppet"><span class="nav-number">1.2.</span> <span class="nav-text">安装puppet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装环境装备："><span class="nav-number">1.2.1.</span> <span class="nav-text">安装环境装备：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
