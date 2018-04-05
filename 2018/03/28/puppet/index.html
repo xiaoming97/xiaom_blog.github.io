@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="Welcome to Xiaom&#39;s site">
 <meta property="og:description" content="puppet puppet简介 puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。   puppet采用C/S星状的结构，所有的客户端和一个或几个服务器交互。每个客户端周期">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-03T18:36:44.695Z">
+<meta property="og:image" content="https://xiaoming97.github.io/xiaom_blog.github.io/2018/03/28/puppet/puppet_version.png">
+<meta property="og:updated_time" content="2018-04-05T20:21:18.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="puppet">
 <meta name="twitter:description" content="puppet puppet简介 puppet是一种Linux、Unix、windows平台的集中配置管理系统，使用自有的puppet描述语言，可管理配置文件、用户、cron任务、软件包、系统服务等。puppet把这些系统实体称之为资源，puppet的设计目标是简化对这些资源的管理以及妥善处理资源间的依赖关系。   puppet采用C/S星状的结构，所有的客户端和一个或几个服务器交互。每个客户端周期">
+<meta name="twitter:image" content="https://xiaoming97.github.io/xiaom_blog.github.io/2018/03/28/puppet/puppet_version.png">
 
 
 
@@ -374,6 +376,10 @@
 </blockquote>
 <blockquote>
 <p>4 配置ntp服务器并且保证时间同步<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ntp.conf</span><br><span class="line"></span><br><span class="line">restrict default kod nomodify</span><br><span class="line">server 127.127.1.0</span><br><span class="line">fudge 127.127.1.0 stratum 10</span><br><span class="line"></span><br><span class="line">service ntpd restart</span><br><span class="line"></span><br><span class="line">chkconfig ntpd on</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>5 安装Ruby<br>由于puppet是基于Ruby开发的，并且不同的Ruby版本所支持的puppet版本也有区别，所以可以先安装Rvm(Ruby版本管理软件）来管理Ruby版本再去安装指定的puppet版本。</p>
+<p><img src="puppet_version.png" alt="avatar"></p>
 </blockquote>
 
       
