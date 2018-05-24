@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Welcome to Xiaom&#39;s site">
 <meta property="og:description" content="ansible ansible简介ansible是新出现的自动化运维工具，基于Python开发，集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，实现了批量系统配置、批量程序部署、批量运行命令等功能。ansible是基于模块工作的，本身没有批量部署的能力。真正具有批量部署的是ansible所运行的模块，ansible只是提供一种框架。主要包括：(1)、连">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-24T14:24:04.678Z">
+<meta property="og:updated_time" content="2018-05-24T14:26:47.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ansible">
 <meta name="twitter:description" content="ansible ansible简介ansible是新出现的自动化运维工具，基于Python开发，集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，实现了批量系统配置、批量程序部署、批量运行命令等功能。ansible是基于模块工作的，本身没有批量部署的能力。真正具有批量部署的是ansible所运行的模块，ansible只是提供一种框架。主要包括：(1)、连">
@@ -355,15 +355,8 @@
         <h1 id="ansible"><a href="#ansible" class="headerlink" title="ansible"></a>ansible</h1><hr>
 <h2 id="ansible简介"><a href="#ansible简介" class="headerlink" title="ansible简介"></a>ansible简介</h2><p>ansible是新出现的自动化运维工具，基于Python开发，集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，实现了批量系统配置、批量程序部署、批量运行命令等功能。<br>ansible是基于模块工作的，本身没有批量部署的能力。真正具有批量部署的是ansible所运行的模块，ansible只是提供一种框架。主要包括：<br>(1)、连接插件connection plugins：负责和被监控端实现通信；<br>(2)、host inventory：指定操作的主机，是一个配置文件里面定义监控的主机；<br>(3)、各种模块核心模块、command模块、自定义模块；<br>(4)、借助于插件完成记录日志邮件等功能；<br>(5)、playbook：剧本执行多个任务时，非必需可以让节点一次性运行多个任务。 </p>
 <hr>
-<h2 id="ansibled的安装"><a href="#ansibled的安装" class="headerlink" title="ansibled的安装"></a>ansibled的安装</h2><pre><code class="&gt;1、使用yum安装">yum -y install epel-release  
-yum -y install ansible  
-
-&gt;2、使用pip(python的包管理模块)安装
-pip install ansible  
-如果没pip,需先安装pip.yum可直接安装：  
-yum install python-pip  
-pip install ansible  
-</code></pre>
+<h2 id="ansibled的安装"><a href="#ansibled的安装" class="headerlink" title="ansibled的安装"></a>ansibled的安装</h2><p>1、使用yum安装<br>yum -y install epel-release<br>yum -y install ansible  </p>
+<p>2、使用pip(python的包管理模块)安装<br>pip install ansible<br>如果没pip,需先安装pip.yum可直接安装：<br>yum install python-pip<br>pip install ansible  </p>
 <hr>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>设置/etc/ansible/ansible.cfg配置参数，ansible有许多参数，下面列出常用的参数：<br>inventory：#这个参数表示资源清单inventory文件的位置，资源清单就是一些ansible需要连接管理的主 机列表。这个参数的配置实例如下：<br>inventory = /etc/ansible/hosts<br>library： ansible的操作动作，无论是本地或远程，都使用一小段代码来执行，这小段代码称为模块，这个library参数就是指向存放ansible模块的目录。配置实例如下：<br>library = /usr/share/ansible<br>ansible支持多个目录方式，只要用冒号“ : ”隔开就可以，同时也会检查当前执行playbook位置下的./library目录。<br>forks：设置默认情况下ansible最多能有多少个进程同时工作， 从ansible 1.3开始,fork数量默认自动设置为主机数量或者潜在的主机数量,默认设置最多5个进程并行处理。具体需要设置多少个，可以根据控制主机的性能和被管节点的数量来确定，可能是 50或100。默认值5是非常保守的值，配置实例如下：<br>forks = 5<br>sudo_user：这是设置默认执行命令的用户，也可以在playbook中重新设置这个参数。配置实例如下：<br>sudo_user = root<br>remote_port：这是指定连接被管节点的管理端口，默认是22。除非设置了特殊的SSH端口，不然这个参数一般是不需要修改的。<br>配置实例如下：<br>remote_port = 22<br>host_key_checking：这是设置是否检查SSH主机的密钥。可以设置为True或False，关闭后第一次连接没有提示配置实例<br>host_key_checking = False<br>timeout：这是设置SSH连接的超时间隔，单位是秒。配置实例如下：<br>timeout = 60<br><strong>log_path：</strong>ansible系统默认是不记录日志的，如果想把ansible系统的输出记录到日志文件中，需要设置log_path来指定一个存储ansible日志的文件。配置实例如下:<br>log_path = /var/log/ansible.log<br>另外需要注意，执行ansible的用户需要有写入日志的权限，模块将会调用被管节点的syslog来记录。  </p>
 
