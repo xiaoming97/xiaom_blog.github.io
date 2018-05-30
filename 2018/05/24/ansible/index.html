@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Welcome to Xiaom&#39;s site">
 <meta property="og:description" content="ansible ansible简介ansible是新出现的自动化运维工具，基于Python开发，集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，实现了批量系统配置、批量程序部署、批量运行命令等功能。ansible是基于模块工作的，本身没有批量部署的能力。真正具有批量部署的是ansible所运行的模块，ansible只是提供一种框架。主要包括：(1)、连">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-30T20:53:03.182Z">
+<meta property="og:updated_time" content="2018-05-30T21:09:22.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ansible">
 <meta name="twitter:description" content="ansible ansible简介ansible是新出现的自动化运维工具，基于Python开发，集合了众多运维工具（puppet、cfengine、chef、func、fabric）的优点，实现了批量系统配置、批量程序部署、批量运行命令等功能。ansible是基于模块工作的，本身没有批量部署的能力。真正具有批量部署的是ansible所运行的模块，ansible只是提供一种框架。主要包括：(1)、连">
@@ -359,22 +359,46 @@
 <hr>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>设置/etc/ansible/ansible.cfg配置参数，ansible有许多参数，下面列出常用的参数：<br>inventory：#这个参数表示资源清单inventory文件的位置，资源清单就是一些ansible需要连接管理的主 机列表。这个参数的配置实例如下：<br>inventory = /etc/ansible/hosts<br>library： ansible的操作动作，无论是本地或远程，都使用一小段代码来执行，这小段代码称为模块，这个library参数就是指向存放ansible模块的目录。配置实例如下：<br>library = /usr/share/ansible<br>ansible支持多个目录方式，只要用冒号“ : ”隔开就可以，同时也会检查当前执行playbook位置下的./library目录。<br>forks：设置默认情况下ansible最多能有多少个进程同时工作， 从ansible 1.3开始,fork数量默认自动设置为主机数量或者潜在的主机数量,默认设置最多5个进程并行处理。具体需要设置多少个，可以根据控制主机的性能和被管节点的数量来确定，可能是 50或100。默认值5是非常保守的值，配置实例如下：<br>forks = 5<br>sudo_user：这是设置默认执行命令的用户，也可以在playbook中重新设置这个参数。配置实例如下：<br>sudo_user = root<br>remote_port：这是指定连接被管节点的管理端口，默认是22。除非设置了特殊的SSH端口，不然这个参数一般是不需要修改的。<br>配置实例如下：<br>remote_port = 22<br>host_key_checking：这是设置是否检查SSH主机的密钥。可以设置为True或False，关闭后第一次连接没有提示配置实例<br>host_key_checking = False<br>timeout：这是设置SSH连接的超时间隔，单位是秒。配置实例如下：<br>timeout = 60<br><strong>log_path：</strong>ansible系统默认是不记录日志的，如果想把ansible系统的输出记录到日志文件中，需要设置log_path来指定一个存储ansible日志的文件。配置实例如下:<br>log_path = /var/log/ansible.log<br>另外需要注意，执行ansible的用户需要有写入日志的权限，模块将会调用被管节点的syslog来记录。  </p>
 <hr>
-<h2 id="主机清单设置"><a href="#主机清单设置" class="headerlink" title="主机清单设置"></a>主机清单设置</h2><p>编辑/etc/ansible/hosts:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@CentOS7-master ~]# vim /etc/ansible/hosts 定义方式：</span><br><span class="line">1、直接指明主机地址或主机名：</span><br><span class="line">green.example.com</span><br><span class="line">blue.example.com</span><br><span class="line">172.17.250.230</span><br><span class="line">172.17.254.180</span><br><span class="line">172.17.254.165</span><br><span class="line"></span><br><span class="line">2、定义一个主机组[组名]把地址或主机名加进去</span><br><span class="line">[webservers]</span><br><span class="line">172.17.254.180</span><br><span class="line">172.17.254.165</span><br><span class="line">组成员可以使用通配符来匹配，如下 172.17.254.[1:6] #表示匹配从172.17.254.1——172.17.254.6的主机</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h2 id="ansible配置公私钥"><a href="#ansible配置公私钥" class="headerlink" title="ansible配置公私钥"></a>ansible配置公私钥</h2><p>一、<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1、首先生成秘钥:  </span><br><span class="line">ssh-keygen -t rsa  </span><br><span class="line">2、然后向主机分发秘钥:  </span><br><span class="line">ssh-copy-id root@主机名或IP地址</span><br><span class="line">3、如果出现以下情况：</span><br><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.1.6.72</span><br><span class="line">-bash: ssh-copy-id: command not found</span><br><span class="line">请尝试：</span><br><span class="line">yum -y install openssh-clientsansible</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">二、批量分发密钥脚本</span><br></pre></td></tr></table></figure></p>
-<p>#!/bin/bash<br>passwd=123456<br>IP_ADDR=”104”<br>. /etc/init.d/functions</p>
-<p> #一键生成密钥<br>if ! [ -f ~/.ssh/id_dsa.pub ];then<br>    ssh-keygen -t dsa -P ‘’ -f ~/.ssh/id_dsa &gt;/dev/null 2&gt;&amp;1<br>    echo -e “\033[32m======Local=========\033[0m”<br>    action “Generate the key!”  /bin/true<br>fi</p>
-<p> #批量发送密钥<br>for i in $IP_ADDR;do<br>    sshpass -p$passwd ssh-copy-id -i /root/.ssh/id_dsa.pub “-o StrictHostKeyChecking=no 192.168.93.${i}”  &gt;/dev/null 2&gt;&amp;1</p>
-<pre><code>if [ $? == 0 ];then
-    echo -e &quot;\033[32m=========`ssh 192.168.93.$i hostname`==========\033[0m&quot;
-    action  &quot;发送成功!!!&quot; /bin/true
-else
-    echo -e &quot;\033[31m======172.16.1.$i=======\033[0m&quot;
-    action  &quot;发送失败!!!&quot; /bin/false
+<h2 id="主机清单设置"><a href="#主机清单设置" class="headerlink" title="主机清单设置"></a>主机清单设置</h2><p>编辑/etc/ansible/hosts:<br>    [root@CentOS7-master ~]# vim /etc/ansible/hosts 定义方式：<br>    1、直接指明主机地址或主机名：<br>    green.example.com<br>    blue.example.com<br>    172.17.250.230<br>    172.17.254.180<br>    172.17.254.165</p>
+<pre><code>2、定义一个主机组[组名]把地址或主机名加进去
+[webservers]
+172.17.254.180
+172.17.254.165
+组成员可以使用通配符来匹配，如下 172.17.254.[1:6] #表示匹配从172.17.254.1——172.17.254.6的主机 
+</code></pre><hr>
+<h2 id="ansible配置公私钥"><a href="#ansible配置公私钥" class="headerlink" title="ansible配置公私钥"></a>ansible配置公私钥</h2><p>一、</p>
+<pre><code>1、首先生成秘钥:  
+ssh-keygen -t rsa  
+2、然后向主机分发秘钥:  
+ssh-copy-id root@主机名或IP地址
+3、如果出现以下情况：
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.1.6.72
+-bash: ssh-copy-id: command not found
+请尝试：
+yum -y install openssh-clientsansible
+</code></pre><h2 id="批量分发密钥脚本"><a href="#批量分发密钥脚本" class="headerlink" title="批量分发密钥脚本"></a>批量分发密钥脚本</h2><pre><code>#!/bin/bash
+passwd=123456
+IP_ADDR=&quot;104&quot;
+. /etc/init.d/functions
+ #一键生成密钥
+if ! [ -f ~/.ssh/id_dsa.pub ];then
+    ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa &gt;/dev/null 2&gt;&amp;1
+    echo -e &quot;\033[32m======Local=========\033[0m&quot;
+    action &quot;Generate the key!&quot;  /bin/true
 fi
-</code></pre><p>done</p>
-<p><code>`</code></p>
-<hr>
+ #批量发送密钥
+for i in $IP_ADDR;do
+    sshpass -p$passwd ssh-copy-id -i /root/.ssh/id_dsa.pub &quot;-o StrictHostKeyChecking=no 192.168.93.${i}&quot;  &gt;/dev/null 2&gt;&amp;1
+
+    if [ $? == 0 ];then
+        echo -e &quot;\033[32m=========`ssh 192.168.93.$i hostname`==========\033[0m&quot;
+        action  &quot;发送成功!!!&quot; /bin/true
+    else
+        echo -e &quot;\033[31m======172.16.1.$i=======\033[0m&quot;
+        action  &quot;发送失败!!!&quot; /bin/false
+    fi
+done
+</code></pre><hr>
 
       
     </div>
@@ -549,7 +573,7 @@ fi
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ansible"><span class="nav-number">1.</span> <span class="nav-text">ansible</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ansible简介"><span class="nav-number">1.1.</span> <span class="nav-text">ansible简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ansibled的安装"><span class="nav-number">1.2.</span> <span class="nav-text">ansibled的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">1.3.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主机清单设置"><span class="nav-number">1.4.</span> <span class="nav-text">主机清单设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ansible配置公私钥"><span class="nav-number">1.5.</span> <span class="nav-text">ansible配置公私钥</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ansible"><span class="nav-number">1.</span> <span class="nav-text">ansible</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ansible简介"><span class="nav-number">1.1.</span> <span class="nav-text">ansible简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ansibled的安装"><span class="nav-number">1.2.</span> <span class="nav-text">ansibled的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">1.3.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主机清单设置"><span class="nav-number">1.4.</span> <span class="nav-text">主机清单设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ansible配置公私钥"><span class="nav-number">1.5.</span> <span class="nav-text">ansible配置公私钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#批量分发密钥脚本"><span class="nav-number">1.6.</span> <span class="nav-text">批量分发密钥脚本</span></a></li></ol></li></ol></div>
             
 
           </div>
