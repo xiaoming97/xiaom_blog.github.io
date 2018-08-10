@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Welcome to Xiaom&#39;s site">
 <meta property="og:description" content="title: tomcatdate: 2018-08-10 14:28:17categories: 运维 tags: tomcat   #tomcat ##tomcat简介&amp;emsp;&amp;emsp;Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta 项目中的一个核心项目，由Apache、Sun 和其他一些公司及个人共同开发而成。由于有了S">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-10T09:20:43.366Z">
+<meta property="og:updated_time" content="2018-08-10T09:34:17.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Welcome to Xiaom&#39;s site">
 <meta name="twitter:description" content="title: tomcatdate: 2018-08-10 14:28:17categories: 运维 tags: tomcat   #tomcat ##tomcat简介&amp;emsp;&amp;emsp;Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta 项目中的一个核心项目，由Apache、Sun 和其他一些公司及个人共同开发而成。由于有了S">
@@ -332,10 +332,10 @@
         <hr>
 <p>title: tomcat<br>date: 2018-08-10 14:28:17<br>categories: 运维</p>
 <h2 id="tags-tomcat"><a href="#tags-tomcat" class="headerlink" title="tags: tomcat  "></a>tags: tomcat  </h2><p><center></center></p>
-<p>#tomcat<br></p>
-<p>##tomcat简介<br>&emsp;&emsp;Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta 项目中的一个核心项目，由Apache、Sun 和其他一些公司及个人共同开发而成。由于有了Sun 的参与和支持，最新的Servlet 和JSP 规范总是能在Tomcat 中得到体现，Tomcat 5支持最新的Servlet 2.4 和JSP 2.0 规范。因为Tomcat 技术先进、性能稳定，而且免费，因而深受Java 爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web 应用服务器。<br>&emsp;&emsp;Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个初学者来说，可以这样认为，当在一台机器上配置好Apache 服务器，可利用它响应HTML（标准通用标记语言下的一个应用）页面的访问请求。实际上Tomcat是Apache 服务器的扩展，但运行时它是独立运行的，所以当你运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。<br>&emsp;&emsp;诀窍是，当配置正确时，Apache 为HTML页面服务，而Tomcat 实际上运行JSP 页面和Servlet。另外，Tomcat和IIS等Web服务器一样，具有处理HTML页面的功能，另外它还是一个Servlet和JSP容器，独立的Servlet容器是Tomcat的默认模式。不过，Tomcat处理静态HTML的能力不如Apache服务器。　　</p>
+<p>#tomcat</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>##tomcat简介<br>&emsp;&emsp;Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta 项目中的一个核心项目，由Apache、Sun 和其他一些公司及个人共同开发而成。由于有了Sun 的参与和支持，最新的Servlet 和JSP 规范总是能在Tomcat 中得到体现，Tomcat 5支持最新的Servlet 2.4 和JSP 2.0 规范。因为Tomcat 技术先进、性能稳定，而且免费，因而深受Java 爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web 应用服务器。<br>&emsp;&emsp;Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。对于一个初学者来说，可以这样认为，当在一台机器上配置好Apache 服务器，可利用它响应HTML（标准通用标记语言下的一个应用）页面的访问请求。实际上Tomcat是Apache 服务器的扩展，但运行时它是独立运行的，所以当你运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。<br>&emsp;&emsp;诀窍是，当配置正确时，Apache 为HTML页面服务，而Tomcat 实际上运行JSP 页面和Servlet。另外，Tomcat和IIS等Web服务器一样，具有处理HTML页面的功能，另外它还是一个Servlet和JSP容器，独立的Servlet容器是Tomcat的默认模式。不过，Tomcat处理静态HTML的能力不如Apache服务器。　　</p>
 <p>##tomcat内部结构</p>
-<p><strong>service</strong><br>&emsp;&emsp;<strong>service</strong> 是一个集合：它由一个或多个 <strong>connector</strong> 以及一个共享引擎 （<strong>engine</strong>) 组成， <strong>engine</strong> 负责处理所有的 <strong>connector</strong> 所获得的客户请求。<br><strong>connector</strong><br>&emsp;&emsp;一个连接器（<strong>connector</strong>) 将在某个指定端口上侦听客户请求，并将获得请求提交给 <strong>engine</strong> 处理，从 <strong>engine</strong>处获得响应结果，并且返回给客户端。tomcat有两个典型的连接器，一个直接侦听来自客户端浏览器的HTTP请求（8080端口），一个侦听来自其他web服务器的请求（8009）端口。<br><strong>engine</strong><br>&emsp;&emsp;处理引擎代表一个service所属的请求处理机制，它接受所有客户端请求，将处理结果返回给连接器，由连接器将最终结果返回给客户端，engine必须在service组件下 。<br><strong>host</strong><br>&emsp;&emsp;默认有一个，代表一个虚拟主机，处理引擎下可以设置多个虚拟主机，每个虚拟主机都有一个域名，当处理引擎接收一个请求时，他把该请求匹配到某个虚拟主机，有虚拟主机处理请求。<br><strong>context</strong><br>&emsp;&emsp;一个context对应一个web应用程序，有一个context path,当虚拟机获得一个请求时，将把该请求匹配到某个context上，将由context进行处理</p>
+<p><center><br><br></center><br><strong>service</strong><br>&emsp;&emsp;<strong>service</strong> 是一个集合：它由一个或多个 <strong>connector</strong> 以及一个共享引擎 （<strong>engine</strong>) 组成， <strong>engine</strong> 负责处理所有的 <strong>connector</strong> 所获得的客户请求。<br><strong>connector</strong><br>&emsp;&emsp;一个连接器（<strong>connector</strong>) 将在某个指定端口上侦听客户请求，并将获得请求提交给 <strong>engine</strong> 处理，从 <strong>engine</strong>处获得响应结果，并且返回给客户端。tomcat有两个典型的连接器，一个直接侦听来自客户端浏览器的HTTP请求（8080端口），一个侦听来自其他web服务器的请求（8009）端口。<br><strong>engine</strong><br>&emsp;&emsp;处理引擎代表一个service所属的请求处理机制，它接受所有客户端请求，将处理结果返回给连接器，由连接器将最终结果返回给客户端，engine必须在service组件下 。<br><strong>host</strong><br>&emsp;&emsp;默认有一个，代表一个虚拟主机，处理引擎下可以设置多个虚拟主机，每个虚拟主机都有一个域名，当处理引擎接收一个请求时，他把该请求匹配到某个虚拟主机，有虚拟主机处理请求。<br><strong>context</strong><br>&emsp;&emsp;一个context对应一个web应用程序，有一个context path,当虚拟机获得一个请求时，将把该请求匹配到某个context上，将由context进行处理</p>
 
       
     </div>
@@ -504,7 +504,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-tomcat"><span class="nav-number">1.</span> <span class="nav-text">tags: tomcat  </span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-tomcat"><span class="nav-number">1.</span> <span class="nav-text">tags: tomcat  </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text"></span></a></li></ol></div>
             
 
           </div>
